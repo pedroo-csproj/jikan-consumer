@@ -33,3 +33,28 @@ func GetAnimeById(id string) (models.GetAnimeById, error) {
 
 	return responseWrapper.Data, nil
 }
+
+func GetAnimeStatisticsById(id string) (models.GetAnimeStatisticsById, error) {
+	resp, err := http.Get(fmt.Sprintf("%sanime/%s/statistics", env.JikanApi, id))
+	if err != nil {
+		return models.GetAnimeStatisticsById{}, err
+	}
+
+	if resp.Status == "404" {
+		return models.GetAnimeStatisticsById{}, nil
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return models.GetAnimeStatisticsById{}, err
+	}
+
+	responseWrapper := models.ResponseWrapper[models.GetAnimeStatisticsById]{}
+
+	err = json.Unmarshal(body, &responseWrapper)
+	if err != nil {
+		return models.GetAnimeStatisticsById{}, err
+	}
+
+	return responseWrapper.Data, nil
+}
