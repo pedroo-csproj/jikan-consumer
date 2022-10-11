@@ -8,6 +8,8 @@ import (
 )
 
 func LoadRoutes(router *mux.Router) {
-	router.HandleFunc("/waifu11", handlers.Waifu1).Methods(http.MethodGet)
-	router.HandleFunc("/waifu22", handlers.Waifu2).Methods(http.MethodGet)
+	animeRoutes := router.PathPrefix("/animes").Subrouter()
+
+	animeRoutes.HandleFunc("/waifu11", handlers.Waifu1).Methods(http.MethodGet)
+	animeRoutes.HandleFunc("/waifu22", handlers.Waifu2).Methods(http.MethodGet)
 }

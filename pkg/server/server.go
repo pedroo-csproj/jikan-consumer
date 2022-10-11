@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	anime "jikan-consumer/anime/routes"
+	character "jikan-consumer/character/routes"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -18,6 +19,7 @@ func StartServer() Server {
 	router := server.router.Host("localhost").Subrouter()
 
 	anime.LoadRoutes(router)
+	character.LoadRoutes(router)
 
 	return server
 }
