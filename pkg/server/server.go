@@ -25,7 +25,7 @@ func StartServer() Server {
 }
 
 func (server *Server) Run() {
-	http.ListenAndServe(":"+"4200", server.router)
-
 	fmt.Println("application listening on port '4200'")
+
+	panic(http.ListenAndServe(":"+"4200", server.router))
 }
