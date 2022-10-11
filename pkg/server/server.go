@@ -4,6 +4,7 @@ import (
 	"fmt"
 	anime "jikan-consumer/anime/routes"
 	character "jikan-consumer/character/routes"
+	"jikan-consumer/pkg/env"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -16,7 +17,7 @@ type Server struct {
 func StartServer() Server {
 	server := Server{router: mux.NewRouter()}
 
-	router := server.router.Host("localhost").Subrouter()
+	router := server.router.Host(env.Host).Subrouter()
 
 	anime.LoadRoutes(router)
 	character.LoadRoutes(router)
@@ -25,7 +26,7 @@ func StartServer() Server {
 }
 
 func (server *Server) Run() {
-	fmt.Println("application listening on port '4200'")
+	fmt.Printf("application listening on %s:%s", env.Host, env.Port)
 
-	panic(http.ListenAndServe(":"+"4200", server.router))
+	panic(http.ListenAndServe(":"+env.Port, server.router))
 }
