@@ -10,27 +10,47 @@ import (
 	"net/http"
 )
 
-func GetClubById(id string) (dtos.GetClubById, error) {
+func GetClubById(id string) models.ResultModel {
 	resp, err := http.Get(fmt.Sprintf("%sclubs/%s", env.JikanApi, id))
 	if err != nil {
-		return dtos.GetClubById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	if resp.Status == "404" {
-		return dtos.GetClubById{}, nil
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 404,
+			Errors:     []string{"club doens't exists"},
+		}
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return dtos.GetClubById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	responseWrapper := models.ResponseWrapper[dtos.GetClubById]{}
 
 	err = json.Unmarshal(body, &responseWrapper)
 	if err != nil {
-		return dtos.GetClubById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
-	return responseWrapper.Data, nil
+	return models.ResultModel{
+		Success:    true,
+		StatusCode: 200,
+		Data:       responseWrapper.Data,
+	}
 }

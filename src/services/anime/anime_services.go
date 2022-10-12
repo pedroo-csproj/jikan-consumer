@@ -10,52 +10,92 @@ import (
 	"net/http"
 )
 
-func GetAnimeById(id string) (dtos.GetAnimeById, error) {
+func GetAnimeById(id string) models.ResultModel {
 	resp, err := http.Get(fmt.Sprintf("%sanime/%s/full", env.JikanApi, id))
 	if err != nil {
-		return dtos.GetAnimeById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	if resp.Status == "404" {
-		return dtos.GetAnimeById{}, nil
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 404,
+			Errors:     []string{"anime doens't exists"},
+		}
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return dtos.GetAnimeById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	responseWrapper := models.ResponseWrapper[dtos.GetAnimeById]{}
 
 	err = json.Unmarshal(body, &responseWrapper)
 	if err != nil {
-		return dtos.GetAnimeById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
-	return responseWrapper.Data, nil
+	return models.ResultModel{
+		Success:    true,
+		StatusCode: 200,
+		Data:       responseWrapper.Data,
+	}
 }
 
-func GetAnimeStatisticsById(id string) (dtos.GetAnimeStatisticsById, error) {
+func GetAnimeStatisticsById(id string) models.ResultModel {
 	resp, err := http.Get(fmt.Sprintf("%sanime/%s/statistics", env.JikanApi, id))
 	if err != nil {
-		return dtos.GetAnimeStatisticsById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	if resp.Status == "404" {
-		return dtos.GetAnimeStatisticsById{}, nil
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 404,
+			Errors:     []string{"anime doens't exists"},
+		}
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return dtos.GetAnimeStatisticsById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
 	responseWrapper := models.ResponseWrapper[dtos.GetAnimeStatisticsById]{}
 
 	err = json.Unmarshal(body, &responseWrapper)
 	if err != nil {
-		return dtos.GetAnimeStatisticsById{}, err
+		return models.ResultModel{
+			Success:    false,
+			StatusCode: 400,
+			Errors:     []string{err.Error()},
+		}
 	}
 
-	return responseWrapper.Data, nil
+	return models.ResultModel{
+		Success:    true,
+		StatusCode: 200,
+		Data:       responseWrapper.Data,
+	}
 }

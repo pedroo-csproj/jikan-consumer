@@ -11,11 +11,10 @@ func GetClubById(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	id := vars["id"]
 
-	club, _ := services.GetClubById(id)
-
-	if club.ID == 0 {
-		writeResponse(response, 404, nil)
+	getClubResult := services.GetClubById(id)
+	if !getClubResult.Success {
+		writeResponse(response, getClubResult.StatusCode, getClubResult.Errors)
 	}
 
-	writeResponse(response, 200, club)
+	writeResponse(response, getClubResult.StatusCode, getClubResult.Data)
 }

@@ -11,23 +11,22 @@ func GetAnimeById(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	id := vars["id"]
 
-	anime, _ := services.GetAnimeById(id)
-
-	if anime.ID == 0 {
-		writeResponse(response, 404, nil)
+	getAnimeResult := services.GetAnimeById(id)
+	if !getAnimeResult.Success {
+		writeResponse(response, getAnimeResult.StatusCode, getAnimeResult.Errors)
 	}
 
-	writeResponse(response, 200, anime)
+	writeResponse(response, getAnimeResult.StatusCode, getAnimeResult.Data)
 }
 
 func GetAnimeStatisticsById(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	id := vars["id"]
 
-	anime, err := services.GetAnimeStatisticsById(id)
-	if err != nil {
-		writeResponse(response, 404, nil)
+	getAnimeStatisticsResult := services.GetAnimeStatisticsById(id)
+	if !getAnimeStatisticsResult.Success {
+		writeResponse(response, getAnimeStatisticsResult.StatusCode, getAnimeStatisticsResult.Errors)
 	}
 
-	writeResponse(response, 200, anime)
+	writeResponse(response, getAnimeStatisticsResult.StatusCode, getAnimeStatisticsResult.Data)
 }
