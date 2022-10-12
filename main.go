@@ -7,12 +7,10 @@ import (
 
 func main() {
 	err := env.Load(".env")
-
 	if err != nil {
 		panic(err)
 	}
 
 	server := server.Start()
-
 	server.Run()
 }
