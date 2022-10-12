@@ -1,7 +1,7 @@
 package main
 
 import (
-	"jikan-consumer/pkg/env"
+	"jikan-consumer/config/env"
 	"jikan-consumer/pkg/server"
 )
 

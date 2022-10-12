@@ -2,9 +2,8 @@ package server
 
 import (
 	"fmt"
-
 	"jikan-consumer/api/routes"
-	"jikan-consumer/pkg/env"
+	"jikan-consumer/config/env"
 	"net/http"
 
 	"github.com/gorilla/mux"

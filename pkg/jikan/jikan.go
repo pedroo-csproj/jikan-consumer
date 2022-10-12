@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"jikan-consumer/pkg/env"
+	"jikan-consumer/config/env"
 	"jikan-consumer/pkg/jikan/models"
 	"net/http"
 )
