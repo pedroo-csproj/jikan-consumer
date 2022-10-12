@@ -58,3 +58,28 @@ func GetAnimeStatisticsById(id string) (models.GetAnimeStatisticsById, error) {
 
 	return responseWrapper.Data, nil
 }
+
+func GetClubById(id string) (models.GetClubById, error) {
+	resp, err := http.Get(fmt.Sprintf("%sclubs/%s", env.JikanApi, id))
+	if err != nil {
+		return models.GetClubById{}, err
+	}
+
+	if resp.Status == "404" {
+		return models.GetClubById{}, nil
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return models.GetClubById{}, err
+	}
+
+	responseWrapper := models.ResponseWrapper[models.GetClubById]{}
+
+	err = json.Unmarshal(body, &responseWrapper)
+	if err != nil {
+		return models.GetClubById{}, err
+	}
+
+	return responseWrapper.Data, nil
+}

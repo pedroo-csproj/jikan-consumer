@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	anime "jikan-consumer/anime/routes"
-	character "jikan-consumer/character/routes"
+	clubs "jikan-consumer/clubs/routes"
 	"jikan-consumer/pkg/env"
 	"net/http"
 
@@ -20,7 +20,7 @@ func StartServer() Server {
 	router := server.router.Host(env.Host).Subrouter()
 
 	anime.LoadRoutes(router)
-	character.LoadRoutes(router)
+	clubs.LoadRoutes(router)
 
 	return server
 }
