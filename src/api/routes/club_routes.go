@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"jikan-consumer/api/controllers"
+	"jikan-consumer/src/api/controllers"
 	"net/http"
 
 	"github.com/gorilla/mux"

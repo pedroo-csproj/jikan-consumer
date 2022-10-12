@@ -1,8 +1,8 @@
 package main
 
 import (
-	"jikan-consumer/api/server"
-	"jikan-consumer/config/env"
+	"jikan-consumer/src/api/server"
+	"jikan-consumer/src/config/env"
 )
 
 func main() {

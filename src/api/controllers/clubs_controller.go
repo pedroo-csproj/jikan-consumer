@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	services "jikan-consumer/services/club"
+	services "jikan-consumer/src/services/club"
 	"net/http"
 
 	"github.com/gorilla/mux"

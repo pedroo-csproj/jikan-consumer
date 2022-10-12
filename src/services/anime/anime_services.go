@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"jikan-consumer/config/env"
-	"jikan-consumer/models"
-	"jikan-consumer/services/anime/dtos"
+	"jikan-consumer/src/config/env"
+	"jikan-consumer/src/models"
+	"jikan-consumer/src/services/anime/dtos"
 	"net/http"
 )
 
