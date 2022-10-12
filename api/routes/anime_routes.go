@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"jikan-consumer/anime/handlers"
+	"jikan-consumer/api/controllers"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -10,6 +10,6 @@ import (
 func LoadAnimeRoutes(router *mux.Router) {
 	animeRoutes := router.PathPrefix("/animes").Subrouter()
 
-	animeRoutes.HandleFunc("/{id}", handlers.GetAnimeById).Methods(http.MethodGet)
-	animeRoutes.HandleFunc("/{id}/statistics", handlers.GetAnimeStatisticsById).Methods(http.MethodGet)
+	animeRoutes.HandleFunc("/{id}", controllers.GetAnimeById).Methods(http.MethodGet)
+	animeRoutes.HandleFunc("/{id}/statistics", controllers.GetAnimeStatisticsById).Methods(http.MethodGet)
 }

@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"jikan-consumer/clubs/handlers"
+	"jikan-consumer/api/controllers"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -10,5 +10,5 @@ import (
 func LoadClubRoutes(router *mux.Router) {
 	clubRoutes := router.PathPrefix("/clubs").Subrouter()
 
-	clubRoutes.HandleFunc("/{id}", handlers.GetClubById).Methods(http.MethodGet)
+	clubRoutes.HandleFunc("/{id}", controllers.GetClubById).Methods(http.MethodGet)
 }

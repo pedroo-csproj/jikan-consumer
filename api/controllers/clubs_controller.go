@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"jikan-consumer/pkg/handlers"
@@ -8,15 +8,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func GetAnimeById(response http.ResponseWriter, request *http.Request) {
+func GetClubById(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	id := vars["id"]
 
-	anime, _ := jikan.GetAnimeById(id)
+	club, _ := jikan.GetClubById(id)
 
-	if anime.ID == 0 {
+	if club.ID == 0 {
 		handlers.WriteResponse(response, 404, nil)
 	}
 
-	handlers.WriteResponse(response, 200, anime)
+	handlers.WriteResponse(response, 200, club)
 }
