@@ -8,8 +8,7 @@ import (
 )
 
 func GetClubById(response http.ResponseWriter, request *http.Request) {
-	vars := mux.Vars(request)
-	id := vars["id"]
+	id := mux.Vars(request)["id"]
 
 	getClubResult := services.GetClubById(id)
 	if !getClubResult.Success {

@@ -8,8 +8,7 @@ import (
 )
 
 func GetAnimeById(response http.ResponseWriter, request *http.Request) {
-	vars := mux.Vars(request)
-	id := vars["id"]
+	id := mux.Vars(request)["id"]
 
 	getAnimeResult := services.GetAnimeById(id)
 	if !getAnimeResult.Success {
@@ -20,8 +19,7 @@ func GetAnimeById(response http.ResponseWriter, request *http.Request) {
 }
 
 func GetAnimeStatisticsById(response http.ResponseWriter, request *http.Request) {
-	vars := mux.Vars(request)
-	id := vars["id"]
+	id := mux.Vars(request)["id"]
 
 	getAnimeStatisticsResult := services.GetAnimeStatisticsById(id)
 	if !getAnimeStatisticsResult.Success {
