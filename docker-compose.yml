@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  jikan-consumer-api:
+    container_name: jikan-consumer-api
+    build:
+      context: .
+    ports:
+      - 3100:3100
+    env_file:
+      - .env
