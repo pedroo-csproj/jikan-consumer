@@ -1,4 +1,4 @@
-package models
+package dtos
 
 type GetAnimeById struct {
 	ID            int     `json:"mal_id"`

@@ -1,4 +1,4 @@
-package models
+package dtos
 
 type GetClubById struct {
 	ID       int    `json:"mal_id"`
