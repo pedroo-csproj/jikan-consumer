@@ -1,4 +1,4 @@
-package anime
+package routes
 
 import (
 	"jikan-consumer/anime/handlers"
@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func LoadRoutes(router *mux.Router) {
+func LoadAnimeRoutes(router *mux.Router) {
 	animeRoutes := router.PathPrefix("/animes").Subrouter()
 
 	animeRoutes.HandleFunc("/{id}", handlers.GetAnimeById).Methods(http.MethodGet)
