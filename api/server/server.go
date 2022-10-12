@@ -13,7 +13,7 @@ type Server struct {
 	router *mux.Router
 }
 
-func StartServer() Server {
+func Start() Server {
 	server := Server{router: mux.NewRouter()}
 
 	router := server.router.Host(env.Host).Subrouter()

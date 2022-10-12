@@ -1,8 +1,8 @@
 package main
 
 import (
+	"jikan-consumer/api/server"
 	"jikan-consumer/config/env"
-	"jikan-consumer/pkg/server"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 		panic(err)
 	}
 
-	server := server.StartServer()
+	server := server.Start()
 
 	server.Run()
 }
