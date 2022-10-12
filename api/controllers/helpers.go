@@ -1,11 +1,11 @@
-package handlers
+package controllers
 
 import (
 	"encoding/json"
 	"net/http"
 )
 
-func WriteResponse(response http.ResponseWriter, statusCode int, data interface{}) {
+func writeResponse(response http.ResponseWriter, statusCode int, data interface{}) {
 	response.Header().Set("Content-Type", "application/json")
 	response.WriteHeader(statusCode)
 

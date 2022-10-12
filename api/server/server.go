@@ -18,8 +18,7 @@ func Start() Server {
 
 	router := server.router.Host(env.Host).Subrouter()
 
-	routes.LoadAnimeRoutes(router)
-	routes.LoadClubRoutes(router)
+	routes.LoadRoutes(router)
 
 	return server
 }

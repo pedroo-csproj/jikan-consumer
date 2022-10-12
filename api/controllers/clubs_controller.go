@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"jikan-consumer/pkg/handlers"
 	"jikan-consumer/pkg/jikan"
 	"net/http"
 
@@ -15,8 +14,8 @@ func GetClubById(response http.ResponseWriter, request *http.Request) {
 	club, _ := jikan.GetClubById(id)
 
 	if club.ID == 0 {
-		handlers.WriteResponse(response, 404, nil)
+		writeResponse(response, 404, nil)
 	}
 
-	handlers.WriteResponse(response, 200, club)
+	writeResponse(response, 200, club)
 }

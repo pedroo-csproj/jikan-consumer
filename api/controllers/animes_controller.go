@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"jikan-consumer/pkg/handlers"
 	"jikan-consumer/pkg/jikan"
 	"net/http"
 
@@ -15,10 +14,10 @@ func GetAnimeById(response http.ResponseWriter, request *http.Request) {
 	anime, _ := jikan.GetAnimeById(id)
 
 	if anime.ID == 0 {
-		handlers.WriteResponse(response, 404, nil)
+		writeResponse(response, 404, nil)
 	}
 
-	handlers.WriteResponse(response, 200, anime)
+	writeResponse(response, 200, anime)
 }
 
 func GetAnimeStatisticsById(response http.ResponseWriter, request *http.Request) {
@@ -27,8 +26,8 @@ func GetAnimeStatisticsById(response http.ResponseWriter, request *http.Request)
 
 	anime, err := jikan.GetAnimeStatisticsById(id)
 	if err != nil {
-		handlers.WriteResponse(response, 404, nil)
+		writeResponse(response, 404, nil)
 	}
 
-	handlers.WriteResponse(response, 200, anime)
+	writeResponse(response, 200, anime)
 }

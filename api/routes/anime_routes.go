@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func LoadAnimeRoutes(router *mux.Router) {
+func loadAnimeRoutes(router *mux.Router) {
 	animeRoutes := router.PathPrefix("/animes").Subrouter()
 
 	animeRoutes.HandleFunc("/{id}", controllers.GetAnimeById).Methods(http.MethodGet)
